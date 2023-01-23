@@ -104,3 +104,25 @@ This command starts LibreSpeed in frontend mode, with a given `servers.json` fil
 ```
 docker run -e MODE=frontend -e TELEMETRY=true -e ENABLE_ID_OBFUSCATION=true -e PASSWORD="yourPasswordHere" -v $(pwd)/servers.json:/servers.json -p 80:80 -it adolfintel/speedtest
 ```
+## Adjusting the android client
+
+Depending on the configuration of the server the android client configuration may have to be adjusted.
+
+E.g. for a standalone sever running in docker the file https://github.com/librespeed/speedtest-android/blob/master/Speedtest-Android/app/src/main/assets/ServerList.json
+should look like 
+~~~
+[
+  {
+    "name":"somelab, somwhere",
+    "server":"http://172.24.40.249:8888/",
+    "dlURL":"backend/garbage.php",
+    "ulURL":"backend/empty.php",
+    "pingURL":"backend/empty.php",
+    "getIpURL":"backend/getIP.php"
+  }
+]
+~~~
+with name adjusted as on likes and server set to the url where the running container is accessible.
+
+
+
